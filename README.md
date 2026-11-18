@@ -1,4 +1,4 @@
-# Tech Support Agent v5
+# Tech Support Agent
 
 v5 adds a **reply writer**: a hosted model (Amazon Bedrock, Anthropic API, or local Ollama) rewrites the
 answer in natural wording using only verified facts from the action log, the built-in draft, and the top
