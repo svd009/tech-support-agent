@@ -1,0 +1,86 @@
+[
+  {
+    "id": "vpn-healthy",
+    "prompt": "My vpn is not working, fix it.",
+    "expected_tool": "diagnose_vpn",
+    "manual_check": "Runs VPN diagnostics; escalates with full details when nothing is fixable."
+  },
+  {
+    "id": "vpn-auth",
+    "prompt": "My VPN says authentication failed.",
+    "expected_tool": "diagnose_vpn",
+    "manual_check": "Checks account lock/password expiry before anything else."
+  },
+  {
+    "id": "email-sync",
+    "prompt": "Outlook stopped receiving new emails.",
+    "expected_tool": "diagnose_email",
+    "manual_check": "Diagnoses mailbox, profile, sync and service status."
+  },
+  {
+    "id": "wifi",
+    "prompt": "My wifi is not working.",
+    "expected_tool": "diagnose_network",
+    "manual_check": "Checks adapter, DHCP, DNS and hardware."
+  },
+  {
+    "id": "password",
+    "prompt": "I forgot my password and need to reset it.",
+    "expected_tool": "issue_password_reset_link",
+    "manual_check": "Gives a one-time link plus steps; never asks for the password."
+  },
+  {
+    "id": "software-ok",
+    "prompt": "Please install Zoom on my laptop.",
+    "expected_tool": "install_software",
+    "manual_check": "Installs from catalogue and asks to confirm."
+  },
+  {
+    "id": "software-approval",
+    "prompt": "I need Photoshop installed.",
+    "expected_tool": "escalate_support_issue",
+    "manual_check": "Explains approval is needed; raises admin_install ticket."
+  },
+  {
+    "id": "mfa",
+    "prompt": "I keep getting MFA prompts I didn't request.",
+    "expected_tool": "revoke_sessions",
+    "manual_check": "Tells employee to reject prompts; revokes sessions; security ticket."
+  },
+  {
+    "id": "hardware",
+    "prompt": "My laptop screen is cracked.",
+    "expected_tool": "escalate_support_issue",
+    "manual_check": "Hardware ticket with device details."
+  },
+  {
+    "id": "safety",
+    "prompt": "My printer is smoking.",
+    "expected_tool": "escalate_support_issue",
+    "manual_check": "Safety guidance first, then ticket."
+  },
+  {
+    "id": "status",
+    "prompt": "Is the email service down?",
+    "expected_tool": "check_service_status",
+    "manual_check": "Reports status without diagnosing the employee."
+  },
+  {
+    "id": "no-ticket",
+    "prompt": "My wifi is not working. Do not create a ticket.",
+    "expected_tool": null,
+    "manual_check": "Explains findings; creates no ticket."
+  },
+  {
+    "id": "ambiguous",
+    "prompt": "It does not work.",
+    "expected_tool": null,
+    "manual_check": "Asks which app/device and what error."
+  },
+  {
+    "id": "model-route",
+    "prompt": "The remote access tunnel thing drops every few minutes.",
+    "expected_tool": "diagnose_vpn",
+    "manual_check": "Rules may miss this; the small model should route it to vpn."
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "notice": "Configured provisional target only. A technician must assess the issue and confirm timing; this is not a guaranteed resolution time or an agreed company SLA.",
+  "categories": {
+    "password_reset": {
+      "complexity": "routine",
+      "resolution_estimate": "4\u20138 working hours"
+    },
+    "account_access": {
+      "complexity": "routine",
+      "resolution_estimate": "4\u20138 working hours"
+    },
+    "admin_install": {
+      "complexity": "standard",
+      "resolution_estimate": "1\u20132 business days"
+    },
+    "device_compliance": {
+      "complexity": "standard",
+      "resolution_estimate": "1\u20132 business days"
+    },
+    "network_incident": {
+      "complexity": "standard",
+      "resolution_estimate": "1\u20132 business days"
+    },
+    "hardware_repair": {
+      "complexity": "complex",
+      "resolution_estimate": "3\u20135 business days"
+    },
+    "security_review": {
+      "complexity": "needs assessment",
+      "resolution_estimate": "Pending security assessment"
+    },
+    "other": {
+      "complexity": "needs assessment",
+      "resolution_estimate": "Pending technician assessment"
+    },
+    "vpn_connectivity": {
+      "complexity": "standard",
+      "resolution_estimate": "1\u20132 business days"
+    },
+    "email_service": {
+      "complexity": "standard",
+      "resolution_estimate": "1\u20132 business days"
+    },
+    "service_outage": {
+      "complexity": "needs assessment",
+      "resolution_estimate": "Tracked with the service incident"
+    }
+  }
+}

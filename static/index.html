@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support Desk | IT Support Agent</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <section id="login-screen" class="login-screen">
+    <div class="login-story">
+      <div class="brand"><span class="brand-mark">S<span>•</span></span> Support Desk</div>
+      <div class="story-content"><div class="eyebrow">IT SUPPORT</div><h1>Support Desk</h1><p>Get IT guidance, follow the evidence, and hand off issues with the details already in place.</p>
+        <div class="story-line"><span>01</span> Describe your issue</div><div class="story-line"><span>02</span> Review the agent’s findings</div><div class="story-line"><span>03</span> Track your support ticket</div>
+      </div>
+      <div class="story-footer">A single agent. A clear trail of actions.</div>
+    </div>
+    <div class="login-side">
+      <form id="login-form" class="login-card">
+        <h2>Welcome to Support Desk</h2><p class="muted">Sign in to get support and track your tickets.</p>
+        <label for="employee-id">Employee ID</label><input id="employee-id" autocomplete="username" placeholder="Employee ID" required maxlength="100">
+        <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Your account password" required maxlength="256">
+        <p id="login-error" class="error" role="alert"></p><button id="login-button" class="primary" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        <p><a href="/reset-password">Forgot password?</a></p><div class="login-note">Use an employee account for personal support, or an <strong>IT support</strong> account to manage the ticket queue.</div>
+        <div class="demo-note">Keep passwords and verification codes out of chat.</div>
+      </form>
+    </div>
+  </section>
+
+  <div id="workspace" class="workspace" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">S<span>•</span></span> Support Desk</div>
+      <button id="show-history" class="secondary">Conversations</button><button id="new-chat" class="new-chat">＋ New conversation</button>
+      <nav aria-label="Main navigation"><button id="nav-chat" class="nav-item active">◯ <span>Assistant</span></button><button id="nav-tickets" class="nav-item">▤ <span id="ticket-nav-label">My tickets</span><span id="ticket-count" class="count">0</span></button></nav>
+      <div class="section-label">RECENT CONVERSATIONS</div><div id="session-list" class="session-list"></div>
+      <div class="sidebar-footer"><span class="green-dot"></span> Local workspace </div>
+    </aside>
+    <header class="topbar"><div><span class="breadcrumb">Workspace / </span><strong id="page-title">Assistant</strong></div><div class="account"><span id="account-name"></span><button id="logout" class="text-button">Sign out</button></div></header>
+
+    <main id="chat-view" class="chat-view">
+      <div class="chat-heading"><div><div class="eyebrow" id="chat-role">EMPLOYEE SUPPORT</div><h2>How can we help?</h2></div><span class="availability">● Ready for your question</span></div>
+      <div id="messages" class="messages" aria-live="polite">
+        <div id="welcome" class="welcome"><div class="welcome-icon">↗</div><h3>Start with what’s happening.</h3><p>Describe the issue in your own words. Include the error message and what you’ve already tried.</p><div class="suggestions"><button data-prompt="My VPN is not working, fix it.">VPN won’t connect <span>↗</span></button><button data-prompt="Outlook stopped receiving new emails.">Email not syncing <span>↗</span></button><button data-prompt="I forgot my password and need to reset it.">Reset my password <span>↗</span></button><button data-prompt="Please install Zoom on my laptop.">Install software <span>↗</span></button></div></div>
+      </div>
+      <div id="chat-error" class="inline-error" role="alert" hidden></div>
+      <form id="chat-form" class="composer"><label class="sr-only" for="message-input">Describe your IT issue</label><textarea id="message-input" placeholder="Describe your IT issue…" rows="3" maxlength="4000" required></textarea><div class="composer-bottom"><span>Enter to send · Shift+Enter for a new line</span><button id="send" type="submit" class="primary">Send message <span aria-hidden="true">↑</span></button></div></form>
+      <div class="chat-footnote">Do not share passwords or MFA codes. Answers can be wrong; review the evidence.</div>
+    </main>
+
+    <aside id="inspector" class="inspector"><div class="inspector-heading"><h3>Behind the answer</h3><span class="pill subtle">EVIDENCE</span></div><p class="muted small">Actual tool results appear here after each response. No hidden reasoning is displayed.</p><div id="run-summary" class="run-summary">No request yet</div><div id="draft-list"></div><div class="section-label">TOOL ACTIVITY</div><div id="tool-list"><p class="empty-copy">The agent hasn’t used a tool in this conversation.</p></div><div class="section-label">RETRIEVED SOURCES</div><div id="source-list"><p class="empty-copy">No documents retrieved yet.</p></div></aside>
+
+    <main id="tickets-view" class="tickets-view" hidden>
+      <div class="ticket-heading"><div><div class="eyebrow">SUPPORT QUEUE</div><h2 id="tickets-heading">My tickets</h2><p class="muted" id="tickets-description">Issues you’ve confirmed and submitted.</p></div><button id="refresh-tickets" class="secondary">↻ Refresh</button></div>
+      <div id="ticket-stats" class="ticket-stats"></div>
+      <div class="ticket-filters"><label class="sr-only" for="ticket-search">Search tickets</label><input id="ticket-search" placeholder="Search by title or ticket number…"><label class="sr-only" for="ticket-filter">Filter status</label><select id="ticket-filter"><option value="all">All statuses</option><option value="open">Open</option><option value="in_progress">In progress</option><option value="resolved">Resolved</option></select></div>
+      <div id="tickets-error" class="inline-error" role="alert" hidden></div>
+      <div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Issue</th><th>Employee</th><th>Status</th><th>Created</th></tr></thead><tbody id="ticket-rows"></tbody></table></div><p id="tickets-empty" class="empty-copy" hidden>No tickets match this view.</p><p class="small muted">Showing up to the 100 most recent tickets you’re authorized to view.</p>
+    </main>
+  </div>
+
+  <dialog id="history-dialog" aria-labelledby="history-heading"><div class="dialog-top"><h2 id="history-heading">Conversations</h2><button id="close-history" class="secondary">Close</button></div><div id="mobile-history"></div></dialog>
+  <dialog id="ticket-dialog"><div class="dialog-top"><span class="eyebrow" id="ticket-detail-id"></span><button id="close-ticket" class="text-button" aria-label="Close ticket">✕</button></div><h2 id="ticket-detail-title"></h2><div id="ticket-detail-meta" class="muted small"></div><p id="ticket-estimate" class="muted small"></p><div class="section-label">DESCRIPTION</div><p id="ticket-detail-description" class="ticket-description"></p><div id="support-actions" hidden><label for="ticket-status">Ticket status</label><select id="ticket-status"><option value="open">Open</option><option value="in_progress">In progress</option><option value="resolved">Resolved</option></select><button id="save-ticket" class="primary">Save status</button></div><div id="recovery-actions" hidden><p>Support Desk account recovery. Verify the employee’s identity before issuing a link. Deliver it privately; never paste it into chat or ticket notes.</p><label><input type="checkbox" id="identity-verified"> I verified this employee’s identity</label><button id="issue-reset" class="secondary">Issue password reset link</button><p id="reset-link-result"></p></div><p id="ticket-detail-error" class="error" role="alert"></p></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
